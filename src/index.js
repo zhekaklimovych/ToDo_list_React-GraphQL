@@ -7,7 +7,6 @@ import {createAuthLink} from "aws-appsync-auth-link";
 import appSyncConfig from './aws-exports';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -29,11 +28,9 @@ const client = new ApolloClient({
 });
 
 root.render(
-    <React.StrictMode>
-        <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+        <React.StrictMode>
             <App/>
-        </ApolloProvider>
-    </React.StrictMode>
+        </React.StrictMode>
+    </ApolloProvider>
 );
-
-reportWebVitals();
