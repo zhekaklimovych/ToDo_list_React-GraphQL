@@ -1,11 +1,12 @@
-import './App.css';
+import {useState, useEffect} from "react";
+import {gql, useSubscription, useMutation, useQuery} from "@apollo/client";
 
-function App() {
-    return (
-        <div className="App">
-            <h1>Apollo</h1>
-        </div>
-    );
-}
+const initialState = {name: "", description: ""};
+
+const App = () => {
+    return(
+        <h1>Apollo</h1>
+    )
+};
 
 export default App;

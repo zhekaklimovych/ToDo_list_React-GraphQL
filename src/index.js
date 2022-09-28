@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink} from '@apollo/client';
 import { createSubscriptionHandshakeLink } from "aws-appsync-subscription-link";
+import {createAuthLink} from "aws-appsync-auth-link";
 
 import appSyncConfig from './aws-exports';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createAuthLink} from "aws-appsync-auth-link";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
