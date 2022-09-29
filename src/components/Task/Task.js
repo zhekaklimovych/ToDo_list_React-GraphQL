@@ -1,11 +1,13 @@
-import './Task.css'
 import {NavLink} from "react-router-dom";
+import {useState} from "react";
+import Modal from "../Modal/Modal";
+
+import './Task.css';
+
 
 const Task = (props) => {
+    const  [ modalOpen ,  setModalOpen ]  =  useState ( false ) ;
 
-    const handleOnChange = ()=> {
-
-    }
     return(
         <div className="task-container-wrapper">
             <div className="task-container">
@@ -20,8 +22,12 @@ const Task = (props) => {
             </div>
 
             <div className="manage-container">
-                <NavLink onChange={handleOnChange} to={`/edit/${props?.data?.id}`} className="shine-button edit-btn">Edit</NavLink>
+                <button onClick={ ()=>setModalOpen(true)} className="shine-button edit-btn">Show</button>
+                <NavLink to={`/edit/${props?.data?.id}`} className="shine-button edit-btn">Edit</NavLink>
             </div>
+
+            {modalOpen && <Modal setOpenModal={setModalOpen} />}
+
         </div>
 
     )

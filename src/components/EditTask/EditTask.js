@@ -21,7 +21,7 @@ const EditTask = () => {
     let [taskStatus, setTaskStatus] = useState('');
     let [description, setDescription] = useState('');
     let [title, setTitle] = useState('');
-    console.log(oneTask)
+
     useEffect(()=> {
         if(oneTask) {
             setTaskStatus(oneTask?.getTask?.taskStatus);
@@ -72,7 +72,7 @@ const EditTask = () => {
                 <button type="submit" className="shine-button save-btn">Save Body</button>
 
                 <div className="form-container-nav">
-                    <NavLink to={'/'}  className="shine-button">Back</NavLink>
+                    <NavLink to={`/all`}  className="shine-button">Back</NavLink>
                 </div>
             </form>
 
