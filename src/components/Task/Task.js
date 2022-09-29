@@ -1,9 +1,7 @@
 import {NavLink} from "react-router-dom";
 import {useState} from "react";
-import Modal from "../Modal/Modal";
-
+import {Modal} from "../EditTask/EditTask";
 import './Task.css';
-
 
 const Task = (props) => {
     const  [ modalOpen ,  setModalOpen ]  =  useState ( false ) ;
@@ -17,7 +15,7 @@ const Task = (props) => {
                 </div>
                 <div className="task-item">
                     <span className="task-item-title">Status:</span>
-                    <span className="manage-item-content">{props.data.taskStatus}</span>
+                    <span>{props.data.taskStatus}</span>
                 </div>
             </div>
 
@@ -26,7 +24,7 @@ const Task = (props) => {
                 <NavLink to={`/edit/${props?.data?.id}`} className="shine-button edit-btn">Edit</NavLink>
             </div>
 
-            {modalOpen && <Modal setOpenModal={setModalOpen} />}
+            {modalOpen && <Modal setOpenModal={setModalOpen} data={props.data}/>}
 
         </div>
 
