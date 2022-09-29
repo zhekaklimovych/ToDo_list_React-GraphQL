@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {BrowserRouter} from "react-router-dom";
 import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink} from '@apollo/client';
 import { createSubscriptionHandshakeLink } from "aws-appsync-subscription-link";
 import {createAuthLink} from "aws-appsync-auth-link";
@@ -28,9 +29,11 @@ const client = new ApolloClient({
 });
 
 root.render(
-    <ApolloProvider client={client}>
-        <React.StrictMode>
-            <App/>
-        </React.StrictMode>
-    </ApolloProvider>
+    <BrowserRouter>
+        <ApolloProvider client={client}>
+            <React.StrictMode>
+                <App/>
+            </React.StrictMode>
+        </ApolloProvider>
+    </BrowserRouter>
 );

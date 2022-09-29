@@ -1,8 +1,22 @@
 .task-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
     align-items: center;
-    border: 2px solid red;
+    border: 3px solid black;
+    min-width: 220px;
+    min-height: 300px;
+}
+
+.task-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.task-item-title {
+    padding-right: 15px;
+    display: block;
+    float: left;
 }

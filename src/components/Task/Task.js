@@ -5,11 +5,28 @@ const Task = (props) => {
     console.log(props);
 
     return(
-        <div className="task-container" key={props.data.id}>
-            {<h3>{props.data.title}</h3>}
-            {<p>{props.data.taskStatus}</p>}
-            {<p>{props.data.description}</p>}
-            {<p>{props.data.owner}</p>}
+        <div className="task-container">
+            <div className="task-item">
+                <span className="task-item-title">Title:</span>
+                <span>{props.data.title}</span>
+            </div>
+            <div className="task-item">
+                <span className="task-item-title">Description:</span>
+                <span>{props.data.description}</span>
+            </div>
+            <div className="task-item">
+                <span className="task-item-title">Status:</span>
+                <span>{props.data.taskStatus}</span>
+            </div>
+
+            <div className="task-item">
+                <span className="task-item-title">Owner:</span>
+                <span>{props.data.owner}</span>
+            </div>
+            <div>
+                <button>Edit</button>
+                <button>Save</button>
+            </div>
         </div>
     )
 }
