@@ -1,22 +1,44 @@
+.task-container-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 400px;
+    justify-content: space-between;
+}
+
 .task-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-content: center;
-    align-items: center;
-    border: 3px solid black;
-    min-width: 220px;
-    min-height: 300px;
+    align-items: start;
+    max-width: 220px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid black;
 }
 
 .task-item {
     display: flex;
-    flex-direction: row;
-    align-items: center;
 }
 
 .task-item-title {
     padding-right: 15px;
-    display: block;
     float: left;
+    font-weight: bold;
+}
+.task-item-content {
+    display: inline-block;
+    width: max-content;
+}
+
+.manage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manage-item {
+    display: flex;
+    flex-direction: column;
 }

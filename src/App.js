@@ -1,10 +1,12 @@
 import {Routes, Route} from "react-router-dom";
 // import {CREATE_TASK, UPDATE_TASK_BODY, UPDATE_TASK_STATUS} from "./graphQL/mutations/Task";
+
 import AllTasks from "./components/AllTasks/AllTasks";
 import CreateTask from "./components/CreateTask/CreateTask";
-import './App.css';
 import Home from "./components/Home/Home";
+import EditTask from "./components/EditTask/EditTask";
 
+import './App.css';
 
 const App = () => {
 
@@ -20,6 +22,7 @@ const App = () => {
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/create' element={<CreateTask />}></Route>
                 <Route path='/all' element={<AllTasks />}></Route>
+                <Route path='/edit/:id' element={<EditTask />}></Route>
             </Routes>
         </div>
     )

@@ -3,6 +3,9 @@ import {useEffect, useState} from "react";
 import './AllTasks.css'
 import {GET_ALL_TASKS} from "../../graphQL/query/Task";
 import Task from "../Task/Task";
+import Preloader from "../Preloader";
+import {NavLink} from "react-router-dom";
+import task from "../Task/Task";
 
 const AllTasks = () => {
 
@@ -11,26 +14,28 @@ const AllTasks = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(()=> {
-        if(!loading && data?.allTasks?.items) {
-            setTasks(data.allTasks.items);
+        if(data) {
+            setTasks(data?.allTasks?.items);
         }
-        console.log(tasks)
-    }, [tasks]);
+    }, [data]);
 
 
-    if(loading) {
-       return <div>Loading</div>;
+    if (loading) return <Preloader />;
+
+    if(error) {
+        return <p>Something wrong</p>;
     }
-    // if(error) {
-    //     return <p>Something wrong</p>;
-    // }
-    // if(!data?.allTasks?.items?.length) {
-    //     return <p>No content</p>
-    // }
+    if(!tasks.length) {
+        return <p>No content</p>
+    }
 
     return(
         <div className="tasks-container">
+            <h1>Tasks</h1>
             {tasks.map(item => <Task key={item.id} data={item}/>)}
+
+            <NavLink to={'/'} className="shine-button">Back</NavLink>
+
         </div>
     );
 
