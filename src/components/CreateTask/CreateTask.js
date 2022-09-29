@@ -26,18 +26,9 @@ const CreateTask = () => {
 
         createTask({
             variables: {
-                description: description,
-                owner: owner,
-                taskStatus: taskStatus,
-                title: title
+                description, owner,taskStatus, title
             }
-        }).then(() => {
-            // setTitle('');
-            // setTaskStatus('');
-            // setDescription('');
-            // setOwner('');
-            navigate('/');
-        })
+        }).then(() => navigate('/'))
     }
 
     return(

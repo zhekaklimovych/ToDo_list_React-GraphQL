@@ -17,12 +17,8 @@ mutation createTask($description: String!, $owner: String!, $taskStatus: String!
 }`);
 
 export const UPDATE_TASK_BODY = gql(`
-mutation updateTaskBody($description: description!, $id: ID!, $title: String!) {
-  updateTaskBody(
-    description: $description,
-    id: $id,
-    title: $title
-  ) {
+mutation updateTaskBody($description: String!, $id: ID!, $title: String!) {
+  updateTaskBody(description: $description, id: $id, title: $title) {
     description
     id
     owner
