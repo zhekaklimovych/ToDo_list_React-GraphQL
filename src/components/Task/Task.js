@@ -6,8 +6,8 @@ import './Task.css';
 const Task = (props) => {
     const  [ modalOpen ,  setModalOpen ]  =  useState ( false ) ;
 
-    return(
-        <div className="task-container-wrapper">
+    if(!modalOpen) {
+        return <div className="task-container-wrapper">
             <div className="task-container">
                 <div className="task-item">
                     <span className="task-item-title">Title:</span>
@@ -23,11 +23,12 @@ const Task = (props) => {
                 <button onClick={ ()=>setModalOpen(true)} className="shine-button edit-btn">Show</button>
                 <NavLink to={`/edit/${props?.data?.id}`} className="shine-button edit-btn">Edit</NavLink>
             </div>
-
-            {modalOpen && <Modal setOpenModal={setModalOpen} data={props.data}/>}
-
         </div>
-
+    }
+    return(
+        <div>
+            {modalOpen && <Modal setOpenModal={setModalOpen} data={props.data}/>}
+        </div>
     )
 }
 
