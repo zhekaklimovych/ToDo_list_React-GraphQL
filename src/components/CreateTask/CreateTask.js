@@ -1,12 +1,36 @@
 import {useMutation} from "@apollo/client";
 import {CREATE_TASK} from "../../graphQL/mutations/Task";
-
+import {useFormik} from "formik";
 import './CreateTask.css'
 import {useState} from "react";
 import Preloader from "../Preloader";
 import {NavLink, useNavigate} from "react-router-dom";
 
 const CreateTask = () => {
+
+    const validateCreateTask = empData => {
+        const errors = {};
+
+        if (!empData.text) {
+            errors.text = 'Field can not be empty';
+        } else if (empData.text.length > 40) {
+            errors.text = 'Max characters 40 ';
+        }
+        return errors;
+    };
+
+    const formik = useFormik({
+        initialValues:{
+            title:'',
+            description:'',
+            owner:'',
+            taskStatus:'',
+        },
+        validate: validateCreateTask,
+        onSubmit: (e)=>{
+            handleSubmit(e);
+        }
+    });
 
     const navigate = useNavigate();
 
@@ -26,13 +50,13 @@ const CreateTask = () => {
 
         createTask({
             variables: {
-                description, owner,taskStatus, title
+                description, owner, taskStatus, title
             }
         }).then(() => navigate('/'))
     }
 
     return(
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={formik.handleSubmit}>
 
             <NavLink to={'/'} className="shine-button back-btn">Back</NavLink>
 

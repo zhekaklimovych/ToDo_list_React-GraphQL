@@ -1,73 +1,100 @@
 import {useMutation, useQuery} from "@apollo/client";
-import {NavLink, useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {NavLink, useParams} from "react-router-dom";
+import {useFormik} from "formik";
 
 import {UPDATE_TASK_BODY, UPDATE_TASK_STATUS} from "../../graphQL/mutations/Task";
 import {GET_TASK} from "../../graphQL/query/Task";
 import Preloader from "../Preloader";
+import {validateEditTask, validateEditTaskBody} from "../../Validation";
+
 import "./EditTask.css"
 
 const EditTask = () => {
 
-    const navigate = useNavigate();
     const {id} = useParams();
 
-    let [updateTaskStatus, {data: statusData, loading: statusLoading, error: statusError}] = useMutation(UPDATE_TASK_STATUS);
-    let [updateTaskBody, {data: bodyData, loading: bodyLoading, error: bodyError}] = useMutation(UPDATE_TASK_BODY);
+    let [updateTaskStatus, {loading: statusLoading}] = useMutation(UPDATE_TASK_STATUS);
+    let [updateTaskBody, {loading: bodyLoading}] = useMutation(UPDATE_TASK_BODY);
     let {data: oneTask, loading: oneLoading, error} = useQuery(GET_TASK, {
         variables: {id}
     });
 
-    let [taskStatus, setTaskStatus] = useState('');
-    let [description, setDescription] = useState('');
-    let [title, setTitle] = useState('');
-
-    useEffect(()=> {
-        if(oneTask) {
-            setTaskStatus(oneTask?.getTask?.taskStatus);
-            setDescription(oneTask?.getTask?.description);
-            setTitle(oneTask?.getTask?.title);
+    const formikStatus = useFormik({
+        enableReinitialize: true,
+        initialValues:{
+            taskStatus: oneTask?.getTask?.taskStatus ?? '',
+        },
+        validate: validateEditTask,
+        onSubmit: ({taskStatus})=> {
+            updateTaskStatus({
+                variables: {
+                    id, taskStatus
+                }
+            })
         }
-    }, [oneTask]);
+    });
+
+    const formikBody = useFormik({
+        enableReinitialize: true,
+        initialValues:{
+            title: oneTask?.getTask?.title ?? '',
+            description: oneTask?.getTask?.description ?? ''
+        },
+        validate: validateEditTaskBody,
+        onSubmit: ({description, title})=>{
+            updateTaskBody({
+                variables: {
+                    description, id, title
+                }
+            })
+        }
+    });
 
     if (statusLoading || oneLoading || bodyLoading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
 
-    const handleSubmitStatus = (e) => {
-        e.preventDefault();
-
-        updateTaskStatus({
-            variables: {
-                id, taskStatus
-            }
-        }).then(() => navigate('/'))
-    }
-
-    const handleSubmitBody = (e) => {
-        e.preventDefault();
-
-        updateTaskBody({
-            variables: {
-                description, id, title
-            }
-        }).then(() => navigate('/'))
-    }
     return(
         <div>
             <h1>Edit</h1>
-            <form className="form-container form-status" id="form-status" onSubmit={handleSubmitStatus}>
+            <form className="form-container form-status" onSubmit={formikStatus.handleSubmit}>
                 <label>Change status</label>
-                <input onChange={ e => setTaskStatus(e.target.value)} name="form-status" value={taskStatus} autoComplete="off"/>
-
+                <input
+                    type="text"
+                    name="taskStatus"
+                    id="taskStatus"
+                    value={formikStatus.values.taskStatus}
+                    autoComplete="off"
+                    onChange={formikStatus.handleChange}
+                    onBlur={formikStatus.handleBlur}
+                />
+                {formikStatus.errors.taskStatus ? <span style={{color:'red'}}>{formikStatus.errors.taskStatus}</span> : null}
                 <button type="submit" className="shine-button save-btn">Save status</button>
             </form>
 
-            <form className="form-container" id="form-body" onSubmit={handleSubmitBody}>
+            <form className="form-container" onSubmit={formikBody.handleSubmit}>
                 <label>Title</label>
-                <input onChange={ e => setTitle(e.target.value)} name="form-body" value={title} autoComplete="off"/>
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    value={formikBody.values.title}
+                    autoComplete="off"
+                    onChange={formikBody.handleChange}
+                    onBlur={formikBody.handleBlur}
+                />
+                {formikBody.errors.title ? <span style={{color:'red'}}>{formikBody.errors.title}</span> : null}
 
                 <label>Description</label>
-                <textarea onChange={ e => setDescription(e.target.value)} name="form-body" value={description} autoComplete="off"/>
+                <textarea
+                    type="text"
+                    name="description"
+                    id="description"
+                    value={formikBody.values.description}
+                    autoComplete="off"
+                    onChange={formikBody.handleChange}
+                    onBlur={formikBody.handleBlur}
+                />
+                {formikBody.errors.description ? <span style={{color:'red'}}>{formikBody.errors.description}</span> : null}
 
                 <button type="submit" className="shine-button save-btn">Save Body</button>
 
@@ -81,7 +108,7 @@ const EditTask = () => {
 }
 
 export const Modal = (props)=> {
-    console.log(props)
+
     return(
         <div className="modal-container">
             <div className="title-close-btn">
