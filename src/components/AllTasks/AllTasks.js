@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import {GET_ALL_TASKS} from "../../graphQL/query/Task";
 import Task from "../Task/Task";
 import Preloader from "../Preloader";
+
 import './AllTasks.css'
 
 const AllTasks = () => {
