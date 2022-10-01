@@ -4,6 +4,7 @@ import AllTasks from "./components/AllTasks/AllTasks";
 import CreateTask from "./components/CreateTask/CreateTask";
 import Home from "./components/Home/Home";
 import EditTask from "./components/EditTask/EditTask";
+import Modal from "./components/Modal/Modal";
 
 import './App.css';
 
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path='/create' element={<CreateTask />}></Route>
                 <Route path='/all' element={<AllTasks />}></Route>
                 <Route path='/edit/:id' element={<EditTask />}></Route>
+                <Route path='/:id' element={<Modal />}></Route>
             </Routes>
         </div>
     )

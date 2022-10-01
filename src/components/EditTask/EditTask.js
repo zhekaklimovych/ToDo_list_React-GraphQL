@@ -107,34 +107,4 @@ const EditTask = () => {
     )
 }
 
-export const Modal = (props)=> {
-
-    return(
-        <div className="modal-container">
-            <div className="title-close-btn">
-                <button onClick={() => {props.setOpenModal(false)}}>X</button>
-            </div>
-            <div className="modal-wrapper">
-                <div className="modal-item">
-                    <span className="modal-item-title">Title:</span>
-                    <span className="modal-item-content">{props.data.title}</span>
-                </div>
-                <div className="modal-item">
-                    <span className="modal-item-title">Status:</span>
-                    <span className="modal-item-content">{props.data.taskStatus}</span>
-                </div>
-                <div className="modal-item modal-item-description">
-                    <span className="modal-item-title">Description:</span>
-                    <span className="modal-item-content">{props.data.description}</span>
-                </div>
-                <div className="modal-item">
-                    <span className="modal-item-title">Owner:</span>
-                    <span className="modal-item-content">{props.data.owner}</span>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-
 export default EditTask;
