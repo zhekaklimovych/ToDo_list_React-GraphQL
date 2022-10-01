@@ -27,4 +27,6 @@ yarn-error.log*
 /.vscode
 
 #settings
-/src/.aws-exports.js
+/src/aws-exports.js
+/src/auth.js
+

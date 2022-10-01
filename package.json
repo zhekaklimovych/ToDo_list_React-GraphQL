@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@aws-amplify/ui-react": "^3.5.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "assert": "^2.0.0",
+    "aws-amplify": "^4.3.37",
     "aws-appsync-auth-link": "^3.0.7",
     "aws-appsync-subscription-link": "^3.1.0",
     "buffer": "^6.0.3",

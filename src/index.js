@@ -5,7 +5,11 @@ import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink} from 
 import { createSubscriptionHandshakeLink } from "aws-appsync-subscription-link";
 import {createAuthLink} from "aws-appsync-auth-link";
 
+import {Amplify, Auth} from "aws-amplify";
+import {AmplifyProvider} from "@aws-amplify/ui-react";
 import appSyncConfig from './aws-exports';
+import authSyncConfig from "./auth";
+
 import './index.css';
 import App from './App';
 
@@ -28,12 +32,15 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
+Amplify.configure(appSyncConfig)
+Amplify.configure(Auth.configure(authSyncConfig))
+
 root.render(
     <BrowserRouter>
         <ApolloProvider client={client}>
-            <React.StrictMode>
+            <AmplifyProvider>
                 <App/>
-            </React.StrictMode>
+            </AmplifyProvider>
         </ApolloProvider>
     </BrowserRouter>
 );

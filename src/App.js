@@ -6,12 +6,19 @@ import Home from "./components/Home/Home";
 import EditTask from "./components/EditTask/EditTask";
 import Modal from "./components/Modal/Modal";
 
+import {withAuthenticator} from "@aws-amplify/ui-react";
+import '@aws-amplify/ui-react/styles.css';
+
 import './App.css';
 
-const App = () => {
+const App = ({signOut, user}) => {
 
     return(
         <div className="app-wrapper">
+            <div className="app-info">
+                <h1>Hello {user.username}</h1>
+                <button onClick={signOut}>Sign out</button>
+            </div>
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/tasks/new' element={<CreateTask />}></Route>
@@ -23,4 +30,4 @@ const App = () => {
     )
 };
 
-export default App;
+export default withAuthenticator(App);

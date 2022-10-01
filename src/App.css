@@ -46,3 +46,7 @@
 .closing-button:hover:before, .closing-button:hover:after {
     transform: translateX(0);
 }
+
+.app-info {
+
+}
