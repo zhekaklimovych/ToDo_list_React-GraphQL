@@ -1,9 +1,10 @@
-import '../EditTask/EditTask.css'
 import {useQuery} from "@apollo/client";
 import {NavLink, useParams} from "react-router-dom";
 
 import {GET_TASK} from "../../graphQL/query/Task";
 import Preloader from "../Preloader";
+
+import '../EditTask/EditTask.css'
 
 const Modal = ()=> {
 
@@ -18,7 +19,7 @@ const Modal = ()=> {
     return(
         <div className="modal-container">
             <div className="title-close-btn">
-                <NavLink to={`/all`}  className="shine-button">Back</NavLink>
+                <NavLink to={`/tasks`}  className="shine-button">Back</NavLink>
             </div>
             <div className="modal-wrapper">
                 <div className="modal-item">

@@ -14,10 +14,10 @@ const App = () => {
         <div className="app-wrapper">
             <Routes>
                 <Route path='/' element={<Home />}></Route>
-                <Route path='/create' element={<CreateTask />}></Route>
-                <Route path='/all' element={<AllTasks />}></Route>
-                <Route path='/edit/:id' element={<EditTask />}></Route>
-                <Route path='/:id' element={<Modal />}></Route>
+                <Route path='/tasks/new' element={<CreateTask />}></Route>
+                <Route path='/tasks' element={<AllTasks />}></Route>
+                <Route path='/tasks/:id/edit' element={<EditTask />}></Route>
+                <Route path='/tasks/:id' element={<Modal />}></Route>
             </Routes>
         </div>
     )

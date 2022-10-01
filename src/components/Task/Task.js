@@ -16,8 +16,8 @@ const Task = (props) => {
                 </div>
             </div>
             <div className="manage-container">
-                <NavLink to={`/${props?.data?.id}`} className="shine-button edit-btn">Show</NavLink>
-                <NavLink to={`/edit/${props?.data?.id}`} className="shine-button edit-btn">Edit</NavLink>
+                <NavLink to={`/tasks/${props?.data?.id}`} className="shine-button edit-btn">Show</NavLink>
+                <NavLink to={`/tasks/${props?.data?.id}/edit`} className="shine-button edit-btn">Edit</NavLink>
             </div>
         </div>
     )

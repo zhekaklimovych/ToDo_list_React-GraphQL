@@ -99,7 +99,7 @@ const EditTask = () => {
                 <button type="submit" className="shine-button save-btn">Save Body</button>
 
                 <div className="form-container-nav">
-                    <NavLink to={`/all`}  className="shine-button">Back</NavLink>
+                    <NavLink to={`/tasks`}  className="shine-button">Back</NavLink>
                 </div>
             </form>
 
