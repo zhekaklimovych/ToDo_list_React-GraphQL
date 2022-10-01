@@ -1,4 +1,6 @@
 import {Routes, Route} from "react-router-dom";
+import {withAuthenticator} from "@aws-amplify/ui-react";
+import '@aws-amplify/ui-react/styles.css';
 
 import AllTasks from "./components/AllTasks/AllTasks";
 import CreateTask from "./components/CreateTask/CreateTask";
@@ -6,17 +8,15 @@ import Home from "./components/Home/Home";
 import EditTask from "./components/EditTask/EditTask";
 import Modal from "./components/Modal/Modal";
 
-import {withAuthenticator} from "@aws-amplify/ui-react";
-import '@aws-amplify/ui-react/styles.css';
-
 import './App.css';
 
 const App = ({signOut, user}) => {
 
     return(
         <div className="app-wrapper">
-            <div className="app-info">
-                <h1>Hello {user.username}</h1>
+            <span className="user-name">{user.username}</span>
+
+            <div className="user-info">
                 <button onClick={signOut}>Sign out</button>
             </div>
             <Routes>

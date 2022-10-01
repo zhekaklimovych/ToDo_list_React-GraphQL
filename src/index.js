@@ -4,9 +4,9 @@ import {BrowserRouter} from "react-router-dom";
 import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink} from '@apollo/client';
 import { createSubscriptionHandshakeLink } from "aws-appsync-subscription-link";
 import {createAuthLink} from "aws-appsync-auth-link";
-
 import {Amplify, Auth} from "aws-amplify";
 import {AmplifyProvider} from "@aws-amplify/ui-react";
+
 import appSyncConfig from './aws-exports';
 import authSyncConfig from "./auth";
 
