@@ -19,7 +19,8 @@ const url = appSyncConfig.aws_appsync_graphqlEndpoint;
 const region = appSyncConfig.aws_appsync_region;
 const auth = {
     type: appSyncConfig.aws_appsync_authenticationType,
-    apiKey: appSyncConfig.aws_appsync_apiKey
+    jwtToken: async () => (await Auth.currentSession()).getIdToken().getJwtToken(),
+
 };
 const httpLink = new HttpLink({ uri: url });
 const link = ApolloLink.from([
