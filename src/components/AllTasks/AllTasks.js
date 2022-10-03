@@ -1,6 +1,6 @@
-import {useQuery} from "@apollo/client";
 import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
+import client from "../../graphQL/ApolloClient";
 
 import {GET_ALL_TASKS} from "../../graphQL/query/Task";
 import Task from "../Task/Task";
@@ -10,38 +10,56 @@ import './AllTasks.css'
 
 const AllTasks = () => {
 
-    let {data, loading, error, refetch} = useQuery(GET_ALL_TASKS);
-
     const [tasks, setTasks] = useState([]);
-    const [pageNumber, setPageNumber] = useState(1);
-    const tasksNumber = 3;
 
-    let skip = tasksNumber * pageNumber - tasksNumber;
-    let maxElements = skip + tasksNumber;
-    let paginetedTasks = tasks?.length == 0 ? [] : tasks?.slice(skip, maxElements);
+    const [loading, setLoading] = useState(false);
+    const [tokenList, setTokenList] = useState([]);
+    const [disableNextButton, setDisableNextButton] = useState(false);
 
-    const handlePrev =()=> {
-        if(pageNumber === 1) return;
-        setPageNumber(pageNumber - 1);
+    const fetchTasks = (forward = true, limit= 3) => {
+
+        setLoading(true);
+
+        client.query({
+            query: GET_ALL_TASKS,
+            variables: {
+                nextToken: (forward ? tokenList[tokenList.length-1] : tokenList[tokenList.length-3]) || null,
+                limit
+            }
+        }).then(({data})=> {
+            if(!data?.allTasks?.items?.length) {
+                throw new Error('data is missing');
+            }
+            setTasks(data.allTasks.items);
+            setDisableNextButton(!data.allTasks.nextToken);
+
+            if(forward) {
+                setTokenList([...tokenList, data.allTasks.nextToken]);
+            } else {
+                setTokenList(tokenList.slice(0, tokenList.length-1));
+            }
+
+        }).finally(()=> {
+            setLoading(false);
+        })
+    }
+
+    const handlePrev = () => {
+        fetchTasks(false);
     }
 
     const handleNext = () => {
-        setPageNumber(prev=> prev + 1);
+      fetchTasks();
     }
 
     useEffect(()=> {
-        if(data) {
-            setTasks(data?.allTasks?.items);
-            refetch();
-        }
-    }, [data]);
+        fetchTasks();
+        //eslint-disable-next-line
+    }, []);
 
 
     if (loading) return <Preloader />;
 
-    if(error) {
-        return <p>Something wrong</p>;
-    }
     if(!tasks.length) {
         return <p>No content</p>
     }
@@ -49,11 +67,11 @@ const AllTasks = () => {
     return(
         <div className="tasks-container">
             <h1>Tasks</h1>
-            {paginetedTasks.map(item => <Task key={item.id} data={item}/>)}
-            <div>Page {pageNumber} </div>
+            {tasks.map(item => <Task key={item.id} data={item}/>)}
+
             <div>
-                <button disabled={pageNumber === 1} className="shine-button" onClick={handlePrev} >prev</button>
-                <button disabled={Math.ceil(tasks.length / tasksNumber) === pageNumber} className="shine-button" onClick={handleNext}>next</button>
+                <button disabled={tokenList.length < 2} className="shine-button" onClick={handlePrev}>prev</button>
+                <button disabled={disableNextButton} className="shine-button" onClick={handleNext}>next</button>
             </div>
             <NavLink to={'/'} className="shine-button">Back</NavLink>
 
