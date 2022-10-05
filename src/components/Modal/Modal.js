@@ -4,14 +4,14 @@ import {NavLink, useParams} from "react-router-dom";
 import {GET_TASK} from "../../graphQL/query/Task";
 import Preloader from "../Preloader";
 
-import '../EditTask/EditTask.css'
+import "../EditTask/EditTask.css";
 
 const Modal = ()=> {
 
     const {id} = useParams();
 
-    let {data, loading, error} = useQuery(GET_TASK, {
-        variables: {id}
+    const {data, loading, error} = useQuery(GET_TASK, {
+        variables: {id},
     });
     if (loading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
@@ -19,7 +19,7 @@ const Modal = ()=> {
     return(
         <div className="modal-container">
             <div className="title-close-btn">
-                <NavLink to={`/tasks`}  className="shine-button">Back</NavLink>
+                <NavLink to={"/tasks"}  className="shine-button">Back</NavLink>
             </div>
             <div className="modal-wrapper">
                 <div className="modal-item">
@@ -40,7 +40,7 @@ const Modal = ()=> {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Modal;

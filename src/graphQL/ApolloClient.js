@@ -23,7 +23,7 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
-Amplify.configure(appSyncConfig)
-Amplify.configure(Auth.configure(authSyncConfig))
+Amplify.configure(appSyncConfig);
+Amplify.configure(Auth.configure(authSyncConfig));
 
 export default client;

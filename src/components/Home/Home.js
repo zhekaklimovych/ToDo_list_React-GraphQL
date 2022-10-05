@@ -14,7 +14,7 @@ const Home = ()=> {
                 </NavLink>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Home;

@@ -7,47 +7,47 @@ import {GET_TASK} from "../../graphQL/query/Task";
 import Preloader from "../Preloader";
 import {validateEditTask, validateEditTaskBody} from "../../Validation";
 
-import "./EditTask.css"
+import "./EditTask.css";
 
 const EditTask = () => {
 
     const {id} = useParams();
 
-    let [updateTaskStatus, {loading: statusLoading}] = useMutation(UPDATE_TASK_STATUS);
-    let [updateTaskBody, {loading: bodyLoading}] = useMutation(UPDATE_TASK_BODY);
-    let {data: oneTask, loading: oneLoading, error} = useQuery(GET_TASK, {
-        variables: {id}
+    const [updateTaskStatus, {loading: statusLoading}] = useMutation(UPDATE_TASK_STATUS);
+    const [updateTaskBody, {loading: bodyLoading}] = useMutation(UPDATE_TASK_BODY);
+    const {data: oneTask, loading: oneLoading, error} = useQuery(GET_TASK, {
+        variables: {id},
     });
 
     const formikStatus = useFormik({
         enableReinitialize: true,
         initialValues:{
-            taskStatus: oneTask?.getTask?.taskStatus ?? '',
+            taskStatus: oneTask?.getTask?.taskStatus ?? "",
         },
         validate: validateEditTask,
         onSubmit: ({taskStatus})=> {
             updateTaskStatus({
                 variables: {
-                    id, taskStatus
-                }
-            })
-        }
+                    id, taskStatus,
+                },
+            });
+        },
     });
 
     const formikBody = useFormik({
         enableReinitialize: true,
         initialValues:{
-            title: oneTask?.getTask?.title ?? '',
-            description: oneTask?.getTask?.description ?? ''
+            title: oneTask?.getTask?.title ?? "",
+            description: oneTask?.getTask?.description ?? "",
         },
         validate: validateEditTaskBody,
         onSubmit: ({description, title})=>{
             updateTaskBody({
                 variables: {
-                    description, id, title
-                }
-            })
-        }
+                    description, id, title,
+                },
+            });
+        },
     });
 
     if (statusLoading || oneLoading || bodyLoading) return <Preloader />;
@@ -67,7 +67,7 @@ const EditTask = () => {
                     onChange={formikStatus.handleChange}
                     onBlur={formikStatus.handleBlur}
                 />
-                {formikStatus.errors.taskStatus ? <span style={{color:'red'}}>{formikStatus.errors.taskStatus}</span> : null}
+                {formikStatus.errors.taskStatus ? <span style={{color:"red"}}>{formikStatus.errors.taskStatus}</span> : null}
                 <button type="submit" className="shine-button save-btn">Save status</button>
             </form>
 
@@ -82,7 +82,7 @@ const EditTask = () => {
                     onChange={formikBody.handleChange}
                     onBlur={formikBody.handleBlur}
                 />
-                {formikBody.errors.title ? <span style={{color:'red'}}>{formikBody.errors.title}</span> : null}
+                {formikBody.errors.title ? <span style={{color:"red"}}>{formikBody.errors.title}</span> : null}
 
                 <label>Description</label>
                 <textarea
@@ -94,17 +94,17 @@ const EditTask = () => {
                     onChange={formikBody.handleChange}
                     onBlur={formikBody.handleBlur}
                 />
-                {formikBody.errors.description ? <span style={{color:'red'}}>{formikBody.errors.description}</span> : null}
+                {formikBody.errors.description ? <span style={{color:"red"}}>{formikBody.errors.description}</span> : null}
 
                 <button type="submit" className="shine-button save-btn">Save Body</button>
 
                 <div className="form-container-nav">
-                    <NavLink to={`/tasks`}  className="shine-button">Back</NavLink>
+                    <NavLink to={"/tasks"}  className="shine-button">Back</NavLink>
                 </div>
             </form>
 
         </div>
-    )
-}
+    );
+};
 
 export default EditTask;

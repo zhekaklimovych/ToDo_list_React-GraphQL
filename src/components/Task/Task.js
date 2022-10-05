@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import './Task.css';
+import "./Task.css";
 
 const Task = (props) => {
 
@@ -20,7 +20,7 @@ const Task = (props) => {
                 <NavLink to={`/tasks/${props?.data?.id}/edit`} className="shine-button edit-btn">Edit</NavLink>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Task;
