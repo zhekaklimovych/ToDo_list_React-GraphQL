@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { NavLink, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 
-import { UPDATE_TASK_BODY, UPDATE_TASK_STATUS } from "../../api/graphQL/mutations/Task";
+import { UPDATE_TASK_BODY, UPDATE_TASK_STATUS } from "../../api/graphQL/mutations";
 import { GET_TASK } from "../../api/graphQL/query/Task";
 import Preloader from "../../shared/Preloader";
 import { validateEditTask, validateEditTaskBody } from "../../utils/Validation";

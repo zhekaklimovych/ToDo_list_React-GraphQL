@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
-import { CREATE_TASK } from "../../api/graphQL/mutations/Task";
+import { CREATE_TASK } from "../../api/graphQL/mutations";
 import Preloader from "../../shared/Preloader";
 import { validateCreateTask } from "../../utils/Validation";
 
