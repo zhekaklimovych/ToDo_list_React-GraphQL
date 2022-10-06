@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import client from "../../graphQL/ApolloClient";
+import client from "../../api/ApolloClient";
 
-import { GET_ALL_TASKS } from "../../graphQL/query/Task";
+import { GET_ALL_TASKS } from "../../api/graphQL/query/Task";
 import Task from "../Task/Task";
 import Preloader from "../Preloader";
 

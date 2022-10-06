@@ -1,25 +1,26 @@
-import {useQuery} from "@apollo/client";
-import {NavLink, useParams} from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { NavLink, useParams } from "react-router-dom";
 
-import {GET_TASK} from "../../graphQL/query/Task";
+import { GET_TASK } from "../../api/graphQL/query/Task";
 import Preloader from "../Preloader";
 
 import "../EditTask/EditTask.css";
 
-const Modal = ()=> {
+const Modal = () => {
+    const { id } = useParams();
 
-    const {id} = useParams();
-
-    const {data, loading, error} = useQuery(GET_TASK, {
-        variables: {id},
+    const { data, loading, error } = useQuery(GET_TASK, {
+        variables: { id },
     });
     if (loading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
 
-    return(
+    return (
         <div className="modal-container">
             <div className="title-close-btn">
-                <NavLink to={"/tasks"}  className="shine-button">Back</NavLink>
+                <NavLink to={"/tasks"} className="shine-button">
+                    Back
+                </NavLink>
             </div>
             <div className="modal-wrapper">
                 <div className="modal-item">

@@ -1,26 +1,28 @@
-import {useMutation} from "@apollo/client";
-import {NavLink, useNavigate} from "react-router-dom";
-import {useFormik} from "formik";
+import { useMutation } from "@apollo/client";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 
-import {CREATE_TASK} from "../../graphQL/mutations/Task";
+import { CREATE_TASK } from "../../api/graphQL/mutations/Task";
 import Preloader from "../Preloader";
-import {validateCreateTask} from "../../Validation";
+import { validateCreateTask } from "../../Validation";
 
 import "./CreateTask.css";
 
 const CreateTask = () => {
-
     const navigate = useNavigate();
 
-    const [createTask, {loading, error}] = useMutation(CREATE_TASK);
+    const [createTask, { loading, error }] = useMutation(CREATE_TASK);
 
     const formik = useFormik({
-        initialValues:{ title:"", description:"", owner:"", taskStatus:"" },
+        initialValues: { title: "", description: "", owner: "", taskStatus: "" },
         validate: validateCreateTask,
-        onSubmit: ({description, owner, taskStatus, title})=>{
+        onSubmit: ({ description, owner, taskStatus, title }) => {
             createTask({
                 variables: {
-                    description, owner, taskStatus, title,
+                    description,
+                    owner,
+                    taskStatus,
+                    title,
                 },
             }).then(() => navigate("/"));
         },
@@ -29,10 +31,11 @@ const CreateTask = () => {
     if (loading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
 
-    return(
+    return (
         <form className="form-container" onSubmit={formik.handleSubmit}>
-
-            <NavLink to={"/"} className="shine-button back-btn">Back</NavLink>
+            <NavLink to={"/"} className="shine-button back-btn">
+                Back
+            </NavLink>
 
             <h1>Create Task</h1>
 
@@ -45,7 +48,7 @@ const CreateTask = () => {
                 value={formik.values.title}
                 autoComplete="off"
             />
-            {formik.errors.title ? <span style={{color:"red"}}>{formik.errors.title}</span> : null}
+            {formik.errors.title ? <span style={{ color: "red" }}>{formik.errors.title}</span> : null}
 
             <textarea
                 onChange={formik.handleChange}
@@ -53,9 +56,10 @@ const CreateTask = () => {
                 name="description"
                 id="description"
                 placeholder="Todo description..."
-                value={formik.values.description} autoComplete="off"
+                value={formik.values.description}
+                autoComplete="off"
             />
-            {formik.errors.description ? <span style={{color:"red"}}>{formik.errors.description}</span> : null}
+            {formik.errors.description ? <span style={{ color: "red" }}>{formik.errors.description}</span> : null}
 
             <input
                 onChange={formik.handleChange}
@@ -66,7 +70,7 @@ const CreateTask = () => {
                 value={formik.values.owner}
                 autoComplete="off"
             />
-            {formik.errors.owner ? <span style={{color:"red"}}>{formik.errors.owner}</span> : null}
+            {formik.errors.owner ? <span style={{ color: "red" }}>{formik.errors.owner}</span> : null}
 
             <input
                 onChange={formik.handleChange}
@@ -77,7 +81,7 @@ const CreateTask = () => {
                 value={formik.values.taskStatus}
                 autoComplete="off"
             />
-            {formik.errors.taskStatus ? <span style={{color:"red"}}>{formik.errors.taskStatus}</span> : null}
+            {formik.errors.taskStatus ? <span style={{ color: "red" }}>{formik.errors.taskStatus}</span> : null}
 
             <button type="submit" className="shine-button create-btn">
                 <span>Create</span>

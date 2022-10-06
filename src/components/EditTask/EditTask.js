@@ -1,34 +1,38 @@
-import {useMutation, useQuery} from "@apollo/client";
-import {NavLink, useParams} from "react-router-dom";
-import {useFormik} from "formik";
+import { useMutation, useQuery } from "@apollo/client";
+import { NavLink, useParams } from "react-router-dom";
+import { useFormik } from "formik";
 
-import {UPDATE_TASK_BODY, UPDATE_TASK_STATUS} from "../../graphQL/mutations/Task";
-import {GET_TASK} from "../../graphQL/query/Task";
+import { UPDATE_TASK_BODY, UPDATE_TASK_STATUS } from "../../api/graphQL/mutations/Task";
+import { GET_TASK } from "../../api/graphQL/query/Task";
 import Preloader from "../Preloader";
-import {validateEditTask, validateEditTaskBody} from "../../Validation";
+import { validateEditTask, validateEditTaskBody } from "../../Validation";
 
 import "./EditTask.css";
 
 const EditTask = () => {
+    const { id } = useParams();
 
-    const {id} = useParams();
-
-    const [updateTaskStatus, {loading: statusLoading}] = useMutation(UPDATE_TASK_STATUS);
-    const [updateTaskBody, {loading: bodyLoading}] = useMutation(UPDATE_TASK_BODY);
-    const {data: oneTask, loading: oneLoading, error} = useQuery(GET_TASK, {
-        variables: {id},
+    const [updateTaskStatus, { loading: statusLoading }] = useMutation(UPDATE_TASK_STATUS);
+    const [updateTaskBody, { loading: bodyLoading }] = useMutation(UPDATE_TASK_BODY);
+    const {
+        data: oneTask,
+        loading: oneLoading,
+        error,
+    } = useQuery(GET_TASK, {
+        variables: { id },
     });
 
     const formikStatus = useFormik({
         enableReinitialize: true,
-        initialValues:{
+        initialValues: {
             taskStatus: oneTask?.getTask?.taskStatus ?? "",
         },
         validate: validateEditTask,
-        onSubmit: ({taskStatus})=> {
+        onSubmit: ({ taskStatus }) => {
             updateTaskStatus({
                 variables: {
-                    id, taskStatus,
+                    id,
+                    taskStatus,
                 },
             });
         },
@@ -36,15 +40,17 @@ const EditTask = () => {
 
     const formikBody = useFormik({
         enableReinitialize: true,
-        initialValues:{
+        initialValues: {
             title: oneTask?.getTask?.title ?? "",
             description: oneTask?.getTask?.description ?? "",
         },
         validate: validateEditTaskBody,
-        onSubmit: ({description, title})=>{
+        onSubmit: ({ description, title }) => {
             updateTaskBody({
                 variables: {
-                    description, id, title,
+                    description,
+                    id,
+                    title,
                 },
             });
         },
@@ -53,7 +59,7 @@ const EditTask = () => {
     if (statusLoading || oneLoading || bodyLoading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
 
-    return(
+    return (
         <div>
             <h1>Edit</h1>
             <form className="form-container form-status" onSubmit={formikStatus.handleSubmit}>
@@ -67,8 +73,12 @@ const EditTask = () => {
                     onChange={formikStatus.handleChange}
                     onBlur={formikStatus.handleBlur}
                 />
-                {formikStatus.errors.taskStatus ? <span style={{color:"red"}}>{formikStatus.errors.taskStatus}</span> : null}
-                <button type="submit" className="shine-button save-btn">Save status</button>
+                {formikStatus.errors.taskStatus ? (
+                    <span style={{ color: "red" }}>{formikStatus.errors.taskStatus}</span>
+                ) : null}
+                <button type="submit" className="shine-button save-btn">
+                    Save status
+                </button>
             </form>
 
             <form className="form-container" onSubmit={formikBody.handleSubmit}>
@@ -82,7 +92,7 @@ const EditTask = () => {
                     onChange={formikBody.handleChange}
                     onBlur={formikBody.handleBlur}
                 />
-                {formikBody.errors.title ? <span style={{color:"red"}}>{formikBody.errors.title}</span> : null}
+                {formikBody.errors.title ? <span style={{ color: "red" }}>{formikBody.errors.title}</span> : null}
 
                 <label>Description</label>
                 <textarea
@@ -94,15 +104,20 @@ const EditTask = () => {
                     onChange={formikBody.handleChange}
                     onBlur={formikBody.handleBlur}
                 />
-                {formikBody.errors.description ? <span style={{color:"red"}}>{formikBody.errors.description}</span> : null}
+                {formikBody.errors.description ? (
+                    <span style={{ color: "red" }}>{formikBody.errors.description}</span>
+                ) : null}
 
-                <button type="submit" className="shine-button save-btn">Save Body</button>
+                <button type="submit" className="shine-button save-btn">
+                    Save Body
+                </button>
 
                 <div className="form-container-nav">
-                    <NavLink to={"/tasks"}  className="shine-button">Back</NavLink>
+                    <NavLink to={"/tasks"} className="shine-button">
+                        Back
+                    </NavLink>
                 </div>
             </form>
-
         </div>
     );
 };
