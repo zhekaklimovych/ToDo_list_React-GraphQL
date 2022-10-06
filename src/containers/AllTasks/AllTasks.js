@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import client from "../../api/ApolloClient";
-import { ALL_TASKS } from "../../api/graphQL/query/Task";
+import { GET_ALL_TASKS } from "../../api/graphQL/query";
 import TaskInfo from "../../components/TaskInfo/TaskInfo";
 import Preloader from "../../shared/Preloader";
 
@@ -20,7 +20,7 @@ const AllTasks = () => {
 
         client
             .query({
-                query: ALL_TASKS,
+                query: GET_ALL_TASKS,
                 variables: {
                     nextToken: (forward ? tokenList[tokenList.length - 1] : tokenList[tokenList.length - 3]) || null,
                     limit
