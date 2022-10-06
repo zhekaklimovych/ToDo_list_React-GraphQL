@@ -3,10 +3,10 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 import AllTasks from "./containers/AllTasks/AllTasks";
-import CreateTask from "./components/CreateTask/CreateTask";
-import Home from "./components/Home/Home";
-import EditTask from "./components/EditTask/EditTask";
-import Modal from "./components/Modal/Modal";
+import CreateTask from "./containers/CreateTask/CreateTask";
+import Home from "./containers/Home/Home";
+import EditTask from "./containers/EditTask/EditTask";
+import ShowTask from "./containers/ShowTask/ShowTask";
 
 import "./App.css";
 
@@ -23,7 +23,7 @@ const App = ({ signOut, user }) => {
                 <Route path="/tasks/new" element={<CreateTask />}></Route>
                 <Route path="/tasks" element={<AllTasks />}></Route>
                 <Route path="/tasks/:id/edit" element={<EditTask />}></Route>
-                <Route path="/tasks/:id" element={<Modal />}></Route>
+                <Route path="/tasks/:id" element={<ShowTask />}></Route>
             </Routes>
         </div>
     );

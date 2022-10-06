@@ -1,46 +1,51 @@
-.task-container-wrapper {
+.modal-container {
+    width: 500px;
+    height: 560px;
+    background-color: #FFD500;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    min-width: 470px;
-    justify-content: space-between;
+    flex-direction: column;
+    padding: 25px;
+    z-index: 90;
+    position: fixed;
+    border-radius: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.task-container {
+.modal-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-content: center;
-    align-items: start;
-    max-width: 220px;
-    height: 50px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid black;
+    font-size: 34px;
+    height: inherit;
 }
-
-.task-item {
+.modal-item {
+    display: flex;
+    justify-content: start;
+}
+.modal-item-content {
     display: flex;
 }
-
-.task-item-title {
-    padding-right: 15px;
-    float: left;
+.modal-item-title {
+    margin-right: 15px;
     font-weight: bold;
-}
-.task-item-content {
-    display: inline-block;
-    width: max-content;
-}
-
-.manage-container {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    min-width: 200px;
-    justify-content: space-around;
 }
-
-.manage-item {
+.modal-item-description {
     display: flex;
     flex-direction: column;
+}
+
+.title-close-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.title-close-btn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
 }

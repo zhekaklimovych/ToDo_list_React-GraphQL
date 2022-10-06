@@ -8,6 +8,7 @@ import Preloader from "../../shared/Preloader";
 import { validateEditTask, validateEditTaskBody } from "../../utils/Validation";
 
 import "./EditTask.css";
+import "./../../styles/common.css";
 
 const EditTask = () => {
     const { id } = useParams();
@@ -112,7 +113,7 @@ const EditTask = () => {
                     Save Body
                 </button>
 
-                <div className="form-container-nav">
+                <div>
                     <NavLink to={"/tasks"} className="shine-button">
                         Back
                     </NavLink>

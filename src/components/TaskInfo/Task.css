@@ -1,0 +1,46 @@
+.task-container-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 470px;
+    justify-content: space-between;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    align-items: start;
+    max-width: 220px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.task-item {
+    display: flex;
+}
+
+.task-item-title {
+    padding-right: 15px;
+    float: left;
+    font-weight: bold;
+}
+.task-item-content {
+    display: inline-block;
+    width: max-content;
+}
+
+.manage-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 200px;
+    justify-content: space-around;
+}
+
+.manage-item {
+    display: flex;
+    flex-direction: column;
+}

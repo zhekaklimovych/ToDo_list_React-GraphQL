@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import client from "../../api/ApolloClient";
 import { ALL_TASKS } from "../../api/graphQL/query/Task";
-import Task from "../../components/Task/Task";
+import TaskInfo from "../../components/TaskInfo/TaskInfo";
 import Preloader from "../../shared/Preloader";
 
 import "./AllTasks.css";
@@ -66,7 +66,7 @@ const AllTasks = () => {
         <div className="tasks-container">
             <h1>Tasks</h1>
             {tasks.map(item => (
-                <Task key={item.id} data={item} />
+                <TaskInfo key={item.id} data={item} />
             ))}
 
             <div>

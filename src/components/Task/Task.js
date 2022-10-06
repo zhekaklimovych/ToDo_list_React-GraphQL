@@ -1,23 +1,33 @@
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 import "./Task.css";
+import "./../../styles/common.css";
 
-const Task = (props) => {
-
-    return(
-        <div className="task-container-wrapper">
-            <div className="task-container">
-                <div className="task-item">
-                    <span className="task-item-title">Title:</span>
-                    <span className="task-item-content">{props.data.title}</span>
-                </div>
-                <div className="task-item">
-                    <span className="task-item-title">Status:</span>
-                    <span>{props.data.taskStatus}</span>
-                </div>
+const Task = props => {
+    return (
+        <div className="modal-container">
+            <div className="title-close-btn">
+                <NavLink to={"/tasks"} className="shine-button">
+                    Back
+                </NavLink>
             </div>
-            <div className="manage-container">
-                <NavLink to={`/tasks/${props?.data?.id}`} className="shine-button edit-btn">Show</NavLink>
-                <NavLink to={`/tasks/${props?.data?.id}/edit`} className="shine-button edit-btn">Edit</NavLink>
+            <div className="modal-wrapper">
+                <div className="modal-item">
+                    <span className="modal-item-title">Title:</span>
+                    <span className="modal-item-content">{props?.data?.getTask?.title}</span>
+                </div>
+                <div className="modal-item">
+                    <span className="modal-item-title">Status:</span>
+                    <span className="modal-item-content">{props?.data?.getTask?.taskStatus}</span>
+                </div>
+                <div className="modal-item modal-item-description">
+                    <span className="modal-item-title">Description:</span>
+                    <span className="modal-item-content">{props?.data?.getTask?.description}</span>
+                </div>
+                <div className="modal-item">
+                    <span className="modal-item-title">Owner:</span>
+                    <span className="modal-item-content">{props?.data?.getTask?.owner}</span>
+                </div>
             </div>
         </div>
     );
