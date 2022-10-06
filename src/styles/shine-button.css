@@ -10,6 +10,7 @@
     color: #fe6637;
     transition: .2s ease-in-out;
 }
+
 .shine-button:before {
     content: "";
     background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
@@ -20,10 +21,12 @@
     left: -75px;
     transform: skewX(-45deg);
 }
+
 .shine-button:hover {
     background: #fe6637;
     color: #fff;
 }
+
 .shine-button:hover:before {
     left: 150px;
     transition: .5s ease-in-out;

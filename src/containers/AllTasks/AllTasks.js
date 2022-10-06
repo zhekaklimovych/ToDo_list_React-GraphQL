@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import client from "../../api/ApolloClient";
 import { GET_ALL_TASKS } from "../../api/graphQL/query";
 import TaskInfo from "../../components/TaskInfo/TaskInfo";
@@ -54,7 +55,6 @@ const AllTasks = () => {
 
     useEffect(() => {
         fetchTasks();
-        //eslint-disable-next-line
     }, []);
 
     if (loading) return <Preloader />;

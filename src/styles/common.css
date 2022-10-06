@@ -53,6 +53,7 @@ button:disabled:hover {
     color: #fe6637;
     transition: none;
 }
+
 button:disabled:hover:before {
     transition: none;
 }

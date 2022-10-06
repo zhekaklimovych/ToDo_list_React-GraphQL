@@ -4,10 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { AmplifyProvider } from "@aws-amplify/ui-react";
 
-import App from "./App";
 import client from "./api/ApolloClient";
+import App from "./App";
 
 import "./index.css";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

@@ -1,5 +1,3 @@
-
-
 .closing-button {
     text-decoration: none;
     display: inline-block;
@@ -14,11 +12,13 @@
     position: relative;
     overflow: hidden;
 }
+
 .closing-button span {
     font-family: 'Montserrat', sans-serif;
     position: relative;
     z-index: 5;
 }
+
 .closing-button:before, .closing-button:after {
     content: "";
     position: absolute;
@@ -27,16 +27,19 @@
     right: 0;
     left: 0;
 }
+
 .closing-button:before {
     transform: translateX(-100%);
     background: white;
     transition: transform .3s cubic-bezier(.55, .055, .675, .19);
 }
+
 .closing-button:after {
     background: #DC143C;
     transform: translateX(100%);
     transition: transform .3s cubic-bezier(.16, .73, .58, .62) .3s;
 }
+
 .closing-button:hover:before, .closing-button:hover:after {
     transform: translateX(0);
 }
