@@ -4,8 +4,8 @@ import { useFormik } from "formik";
 
 import { UPDATE_TASK_BODY, UPDATE_TASK_STATUS } from "../../api/graphQL/mutations/Task";
 import { GET_TASK } from "../../api/graphQL/query/Task";
-import Preloader from "../Preloader";
-import { validateEditTask, validateEditTaskBody } from "../../Validation";
+import Preloader from "../../shared/Preloader";
+import { validateEditTask, validateEditTaskBody } from "../../utils/Validation";
 
 import "./EditTask.css";
 
@@ -17,32 +17,32 @@ const EditTask = () => {
     const {
         data: oneTask,
         loading: oneLoading,
-        error,
+        error
     } = useQuery(GET_TASK, {
-        variables: { id },
+        variables: { id }
     });
 
     const formikStatus = useFormik({
         enableReinitialize: true,
         initialValues: {
-            taskStatus: oneTask?.getTask?.taskStatus ?? "",
+            taskStatus: oneTask?.getTask?.taskStatus ?? ""
         },
         validate: validateEditTask,
         onSubmit: ({ taskStatus }) => {
             updateTaskStatus({
                 variables: {
                     id,
-                    taskStatus,
-                },
+                    taskStatus
+                }
             });
-        },
+        }
     });
 
     const formikBody = useFormik({
         enableReinitialize: true,
         initialValues: {
             title: oneTask?.getTask?.title ?? "",
-            description: oneTask?.getTask?.description ?? "",
+            description: oneTask?.getTask?.description ?? ""
         },
         validate: validateEditTaskBody,
         onSubmit: ({ description, title }) => {
@@ -50,10 +50,10 @@ const EditTask = () => {
                 variables: {
                     description,
                     id,
-                    title,
-                },
+                    title
+                }
             });
-        },
+        }
     });
 
     if (statusLoading || oneLoading || bodyLoading) return <Preloader />;

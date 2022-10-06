@@ -1,8 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { NavLink, useParams } from "react-router-dom";
-
 import { GET_TASK } from "../../api/graphQL/query/Task";
-import Preloader from "../Preloader";
+import Preloader from "../../shared/Preloader";
 
 import "../EditTask/EditTask.css";
 
@@ -10,7 +9,7 @@ const Modal = () => {
     const { id } = useParams();
 
     const { data, loading, error } = useQuery(GET_TASK, {
-        variables: { id },
+        variables: { id }
     });
     if (loading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;

@@ -25,10 +25,6 @@
                 "code": 200
             }
         ],
-        "comma-dangle": [
-            "error",
-            "always-multiline"
-        ],
         "semi": [
             "warn",
             "always"

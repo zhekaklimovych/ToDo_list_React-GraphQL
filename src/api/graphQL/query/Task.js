@@ -1,6 +1,6 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 
-export const GET_ALL_TASKS = gql(`
+export const ALL_TASKS = gql(`
 query allTasks($limit: Int!,$nextToken: String) {
   allTasks(limit: $limit, nextToken: $nextToken) {
     items {

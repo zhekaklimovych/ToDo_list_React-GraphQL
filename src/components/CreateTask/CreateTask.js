@@ -3,8 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { CREATE_TASK } from "../../api/graphQL/mutations/Task";
-import Preloader from "../Preloader";
-import { validateCreateTask } from "../../Validation";
+import Preloader from "../../shared/Preloader";
+import { validateCreateTask } from "../../utils/Validation";
 
 import "./CreateTask.css";
 
@@ -22,10 +22,10 @@ const CreateTask = () => {
                     description,
                     owner,
                     taskStatus,
-                    title,
-                },
+                    title
+                }
             }).then(() => navigate("/"));
-        },
+        }
     });
 
     if (loading) return <Preloader />;
