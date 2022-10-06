@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import "./Task.css";
 import "./../../styles/common.css";
-
+import "./../../styles/shine-button.css";
 const Task = props => {
     return (
         <div className="modal-container">

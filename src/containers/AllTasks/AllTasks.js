@@ -6,6 +6,7 @@ import TaskInfo from "../../components/TaskInfo/TaskInfo";
 import Preloader from "../../shared/Preloader";
 
 import "./AllTasks.css";
+import "./../../styles/shine-button.css";
 
 const AllTasks = () => {
     const [tasks, setTasks] = useState([]);

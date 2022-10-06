@@ -6,7 +6,8 @@ import { CREATE_TASK } from "../../api/graphQL/mutations/Task";
 import Preloader from "../../shared/Preloader";
 import { validateCreateTask } from "../../utils/Validation";
 
-import "./CreateTask.css";
+import "./../../styles/common.css";
+import "./../../styles/shine-button.css";
 
 const CreateTask = () => {
     const navigate = useNavigate();

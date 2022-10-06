@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { GET_TASK } from "../../api/graphQL/query/Task";
 import Preloader from "../../shared/Preloader";
 
-import "../EditTask/EditTask.css";
 import Task from "../../components/Task/Task";
 
 const ShowTask = () => {

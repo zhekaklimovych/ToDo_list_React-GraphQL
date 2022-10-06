@@ -1,8 +1,8 @@
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./../../styles/closing-button.css";
 
-const Home = ()=> {
-
-    return(
+const Home = () => {
+    return (
         <div>
             <h1>To Do List</h1>
             <div>

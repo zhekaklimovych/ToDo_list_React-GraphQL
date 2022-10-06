@@ -7,8 +7,8 @@ import { GET_TASK } from "../../api/graphQL/query/Task";
 import Preloader from "../../shared/Preloader";
 import { validateEditTask, validateEditTaskBody } from "../../utils/Validation";
 
-import "./EditTask.css";
 import "./../../styles/common.css";
+import "./../../styles/shine-button.css";
 
 const EditTask = () => {
     const { id } = useParams();
