@@ -3,6 +3,9 @@
         "react-app",
         "react-app/jest"
     ],
+    "env": {
+        "shared-node-browser": true
+    },
     "rules": {
         "no-console": "warn",
         "quotes": [
