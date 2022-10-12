@@ -1,0 +1,15 @@
+.opportunities-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFD500;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.opportunities-text {
+    display: flex;
+    font-size: 32px;
+    text-align: justify;
+    max-width: 700px;
+}

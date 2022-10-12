@@ -14,6 +14,14 @@ const Home = () => {
                     <span>Show All Tasks</span>
                 </NavLink>
             </div>
+            <div>
+                <NavLink to="/about" className="closing-button">
+                    <span>About</span>
+                </NavLink>
+                <NavLink to="/opportunities" className="closing-button">
+                    <span>Opportunities</span>
+                </NavLink>
+            </div>
         </div>
     );
 };

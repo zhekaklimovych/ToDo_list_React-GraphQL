@@ -8,6 +8,9 @@ import Home from "./containers/Home/Home";
 import EditTask from "./containers/EditTask/EditTask";
 import ShowTask from "./containers/ShowTask/ShowTask";
 
+import About from "./containers/PublicPages/About";
+import Opportunities from "./containers/PublicPages/Opportunities";
+
 import "./App.css";
 
 const App = ({ signOut, user }) => {
@@ -24,6 +27,9 @@ const App = ({ signOut, user }) => {
                 <Route path="/tasks" element={<AllTasks />}></Route>
                 <Route path="/tasks/:id/edit" element={<EditTask />}></Route>
                 <Route path="/tasks/:id" element={<ShowTask />}></Route>
+
+                <Route path="/about" element={<About />}></Route>
+                <Route path="/opportunities" element={<Opportunities />}></Route>
             </Routes>
         </div>
     );
