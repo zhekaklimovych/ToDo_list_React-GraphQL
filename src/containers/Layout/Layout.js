@@ -4,7 +4,7 @@ import { useAuthenticator, Button } from "@aws-amplify/ui-react";
 import "./../../styles/common.css";
 
 const Layout = () => {
-    const { route, signOut } = useAuthenticator(context => [context.route, context.signOut]);
+    const { route, signOut, user } = useAuthenticator(context => [context.route, context.signOut]);
     const navigate = useNavigate();
 
     const logOut = () => {
@@ -13,6 +13,7 @@ const Layout = () => {
     };
     return (
         <div className="layout-container">
+            <div>{route === "authenticated" ? <div className="user-name">{user.username}</div> : null}</div>
             <nav className="layout-nav">
                 <div className="layout-nav-item">
                     {route !== "authenticated" ? (

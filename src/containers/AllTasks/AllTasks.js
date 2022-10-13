@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useAuthenticator } from "@aws-amplify/ui-react";
 
 import client from "../../api/ApolloClient";
 import { GET_ALL_TASKS } from "../../api/graphQL/query";
@@ -16,8 +15,6 @@ const AllTasks = () => {
     const [loading, setLoading] = useState(false);
     const [tokenList, setTokenList] = useState([]);
     const [disableNextButton, setDisableNextButton] = useState(false);
-
-    const { route } = useAuthenticator(context => [context.route]);
 
     const fetchTasks = (forward = true, limit = 3) => {
         setLoading(true);
@@ -64,9 +61,6 @@ const AllTasks = () => {
 
     if (!tasks.length) {
         return <p>No content</p>;
-    }
-    if (route !== "authenticated") {
-        return <NavLink to={"/login"}></NavLink>;
     }
     return (
         <div className="tasks-container">
