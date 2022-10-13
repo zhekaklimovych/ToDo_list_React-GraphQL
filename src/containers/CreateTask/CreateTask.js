@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 import { CREATE_TASK } from "../../api/graphQL/mutations";
 import Preloader from "../../shared/Preloader";
@@ -28,7 +29,10 @@ const CreateTask = () => {
             }).then(() => navigate("/"));
         }
     });
-
+    const { route } = useAuthenticator(context => [context.route]);
+    if (route !== "authenticated") {
+        return <NavLink to={"/login"}></NavLink>;
+    }
     if (loading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
 

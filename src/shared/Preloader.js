@@ -1,8 +1,12 @@
 import preloader from "../assets/preloader.gif";
 
+import "./../styles/common.css";
+
 const Preloader = () => {
-    return(
-        <img src={preloader} alt={"preloader"}/>
+    return (
+        <div className="preloader">
+            <img src={preloader} alt={"preloader"} />
+        </div>
     );
 };
 

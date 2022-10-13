@@ -57,3 +57,20 @@ button:disabled:hover {
 button:disabled:hover:before {
     transition: none;
 }
+
+.layout-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+}
+.layout-nav-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.preloader {
+    display: flex;
+    justify-content: center;
+}
