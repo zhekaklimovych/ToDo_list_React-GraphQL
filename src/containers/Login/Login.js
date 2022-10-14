@@ -1,8 +1,7 @@
-import { Authenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-import { useAuthenticator, View } from "@aws-amplify/ui-react";
+import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import "@aws-amplify/ui-react/styles.css";
 
 const Login = () => {
     const { route } = useAuthenticator(context => [context.route]);
@@ -16,9 +15,9 @@ const Login = () => {
         }
     }, [route, navigate, from]);
     return (
-        <View className="auth-wrapper">
+        <div>
             <Authenticator></Authenticator>
-        </View>
+        </div>
     );
 };
 export default Login;

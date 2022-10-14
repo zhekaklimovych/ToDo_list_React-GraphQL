@@ -9,6 +9,14 @@
     min-width: 500px;
 }
 
+.navigate-container {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.navigate-container button {
+    margin: 3px;
+}
 
 @media screen and (max-width: 1000px) {
     .tasks-container {

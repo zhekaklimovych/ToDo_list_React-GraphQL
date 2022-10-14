@@ -69,7 +69,7 @@ const AllTasks = () => {
                 <TaskInfo key={item.id} data={item} />
             ))}
 
-            <div>
+            <div className="navigate-container">
                 <button disabled={tokenList.length < 2} className="shine-button" onClick={handlePrev}>
                     prev
                 </button>

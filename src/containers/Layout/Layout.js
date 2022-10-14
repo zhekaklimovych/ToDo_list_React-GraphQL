@@ -15,24 +15,20 @@ const Layout = () => {
         <div className="layout-container">
             <div>{route === "authenticated" ? <div className="user-name">{user.username}</div> : null}</div>
             <nav className="layout-nav">
-                <div className="layout-nav-item">
-                    {route !== "authenticated" ? (
-                        <Button className="layout-nav-item-btn" onClick={() => navigate("/login")}>
-                            Login
-                        </Button>
-                    ) : (
-                        <Button className="layout-nav-item-btn" onClick={() => logOut()}>
-                            Logout
-                        </Button>
-                    )}
-                    <Button onClick={() => navigate("/opportunities")}>Opportunities</Button>
-                    <Button onClick={() => navigate("/about")}>About</Button>
-                </div>
+                {route !== "authenticated" ? (
+                    <Button className="layout-nav-item-btn" onClick={() => navigate("/login")}>
+                        Login
+                    </Button>
+                ) : (
+                    <Button className="layout-nav-item-btn" onClick={() => logOut()}>
+                        Logout
+                    </Button>
+                )}
+                <Button onClick={() => navigate("/opportunities")}>Opportunities</Button>
+                <Button onClick={() => navigate("/about")}>About</Button>
 
-                <div className="layout-nav-item">
-                    <Button onClick={() => navigate("tasks/new")}>Create Task</Button>
-                    <Button onClick={() => navigate("/tasks")}>Show All Tasks</Button>
-                </div>
+                <Button onClick={() => navigate("tasks/new")}>Create Task</Button>
+                <Button onClick={() => navigate("/tasks")}>Show All Tasks</Button>
             </nav>
             <Outlet />
         </div>
