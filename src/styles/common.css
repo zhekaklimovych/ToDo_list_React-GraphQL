@@ -60,14 +60,20 @@ button:disabled:hover:before {
 
 .layout-nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     margin-bottom: 50px;
 }
 .layout-nav-item {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+.layout-nav-item-btn {
+    position: fixed;
+    top: 40px;
+    right: 40px;
 }
 
 .preloader {

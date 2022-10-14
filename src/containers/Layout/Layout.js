@@ -17,9 +17,13 @@ const Layout = () => {
             <nav className="layout-nav">
                 <div className="layout-nav-item">
                     {route !== "authenticated" ? (
-                        <Button onClick={() => navigate("/login")}>Login</Button>
+                        <Button className="layout-nav-item-btn" onClick={() => navigate("/login")}>
+                            Login
+                        </Button>
                     ) : (
-                        <Button onClick={() => logOut()}>Logout</Button>
+                        <Button className="layout-nav-item-btn" onClick={() => logOut()}>
+                            Logout
+                        </Button>
                     )}
                     <Button onClick={() => navigate("/opportunities")}>Opportunities</Button>
                     <Button onClick={() => navigate("/about")}>About</Button>
