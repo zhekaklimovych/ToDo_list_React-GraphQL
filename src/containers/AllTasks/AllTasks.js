@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 
 import client from "../../api/ApolloClient";
 import { GET_ALL_TASKS } from "../../api/graphQL/query";
 import TaskInfo from "../../components/TaskInfo/TaskInfo";
 import Preloader from "../../shared/Preloader";
+import CheckAuth from "../../service/auth/CheckAuth";
 
 import "./AllTasks.css";
 import "./../../styles/shine-button.css";
@@ -57,6 +58,7 @@ const AllTasks = () => {
         fetchTasks();
     }, []);
 
+    if(!CheckAuth()) return <Navigate to="/login" />;
     if (loading) return <Preloader />;
 
     if (!tasks.length) {

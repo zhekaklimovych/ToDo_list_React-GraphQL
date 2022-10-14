@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
-import RequireAuth from "./service/auth/RequireAuth";
 
 import Layout from "./containers/Layout/Layout";
 import AllTasks from "./containers/AllTasks/AllTasks";
@@ -21,35 +20,10 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route path="/login" element={<Login />} />
-                    <Route
-                        path="/tasks/new"
-                        element={
-                            <RequireAuth>
-                                <CreateTask />
-                            </RequireAuth>
-                        }></Route>
-                    <Route
-                        path="/tasks"
-                        element={
-                            <RequireAuth>
-                                <AllTasks />
-                            </RequireAuth>
-                        }></Route>
-                    <Route
-                        path="/tasks/:id/edit"
-                        element={
-                            <RequireAuth>
-                                <EditTask />
-                            </RequireAuth>
-                        }></Route>
-                    <Route
-                        path="/tasks/:id"
-                        element={
-                            <RequireAuth>
-                                <ShowTask />
-                            </RequireAuth>
-                        }></Route>
-
+                    <Route path="/tasks/new" element={<CreateTask />}></Route>
+                    <Route  path="/tasks" element={<AllTasks />}></Route>
+                    <Route path="/tasks/:id/edit" element={<EditTask />}></Route>
+                    <Route path="/tasks/:id" element={<ShowTask />}></Route>
                     <Route path="/about" element={<About />}></Route>
                     <Route path="/opportunities" element={<Opportunities />}></Route>
                 </Route>

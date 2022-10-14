@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { NavLink, useParams } from "react-router-dom";
+import {Navigate, NavLink, useParams} from "react-router-dom";
 import { useFormik } from "formik";
 
 import { UPDATE_TASK_BODY, UPDATE_TASK_STATUS } from "../../api/graphQL/mutations";
@@ -9,6 +9,7 @@ import { validateEditTask, validateEditTaskBody } from "../../utils/Validation";
 
 import "./../../styles/common.css";
 import "./../../styles/shine-button.css";
+import CheckAuth from "../../service/auth/CheckAuth";
 
 const EditTask = () => {
     const { id } = useParams();
@@ -57,6 +58,7 @@ const EditTask = () => {
         }
     });
 
+    if(!CheckAuth()) return <Navigate to="/login" />;
     if (statusLoading || oneLoading || bodyLoading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
 

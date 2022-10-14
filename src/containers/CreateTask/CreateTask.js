@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client";
-import { NavLink, useNavigate } from "react-router-dom";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
 import { useFormik } from "formik";
 
 import { CREATE_TASK } from "../../api/graphQL/mutations";
 import Preloader from "../../shared/Preloader";
 import { validateCreateTask } from "../../utils/Validation";
+import CheckAuth from "../../service/auth/CheckAuth";
 
 import "./../../styles/common.css";
 import "./../../styles/shine-button.css";
@@ -13,7 +14,6 @@ const CreateTask = () => {
     const navigate = useNavigate();
 
     const [createTask, { loading, error }] = useMutation(CREATE_TASK);
-
     const formik = useFormik({
         initialValues: { title: "", description: "", owner: "", taskStatus: "" },
         validate: validateCreateTask,
@@ -28,6 +28,7 @@ const CreateTask = () => {
             }).then(() => navigate("/"));
         }
     });
+    if(!CheckAuth()) return <Navigate to="/login" />;
     if (loading) return <Preloader />;
     if (error) return `Submission error! ${error.message}`;
 
